@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int i, j, k, size = nums.size();
+        vector<vector<int>> result;
+        set<vector<int>> triplets;
+        i = 0;
+            sort(nums.begin(), nums.end()); 
+            while (i < size - 2) {
+                j = i + 1, k = size - 1;
+                while (j < k) {
+                    int sum = nums[i] + nums[j] + nums[k];//if sum is less than 0, then number to be                                                           //added is to the right of j
+                    if (sum < 0) {
+                        j++;
+                    }
+                    //if sum is greater than 0, then number to be added is to the left of k
+                    else if (sum > 0) {
+                        k--;
+                    }
+                    //sum is 0, check if similar triplet are present, if not add it to the semi //result.  //set datastruture handles duplicates for us.
+                    else {
+                        triplets.insert({ nums[i], nums[j], nums[k] });
+                        j++, k--;
+                    }
+                }
+                i++;
+            }
+			//copy list of unique triplets to final return value
+			result.assign(triplets.begin(), triplets.end());
+        return result;
+    }
+};
