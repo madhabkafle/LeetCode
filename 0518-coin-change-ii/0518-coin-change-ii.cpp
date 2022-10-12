@@ -2,20 +2,26 @@ class Solution {
 public:
     int change(int amount, vector<int>& coins) {
         int n= coins.size();
-        vector<vector<int>> dp(n+1,vector<int>(amount+1,-1));
-        int ans=coin(coins,n-1,amount,dp);
+        
+        int ans=coin(coins,n,amount);
         return ans;
     }
-    int coin(vector<int>& coins,int ind,int amt,vector<vector<int>> &dp){
-        if(ind ==0){
-            return amt%coins[ind]==0;
-        } 
-        if(dp[ind][amt]!=-1) return dp[ind][amt];
-      int not_pick=coin(coins,ind-1,amt,dp);
-      int pick=0;
-        if(coins[ind]<=amt){
-            pick=coin(coins,ind,amt-coins[ind],dp);
+    int coin(vector<int>& coins,int ind,int amt){
+        vector<vector<int>> dp(ind,vector<int>(amt+1,0));
+        for(int i=0;i<=amt;i++){
+            dp[0][i]=(i%coins[0]==0);
         }
-     return  dp[ind][amt]=pick+not_pick;;
+       for(int i=1;i<ind;i++){
+           for(int j=0;j<=amt;j++){
+                int not_pick=dp[i-1][j];
+      int pick=0;
+        if(coins[i]<=j)
+            pick=dp[i][j-coins[i]];
+        
+    dp[i][j]=pick+not_pick;;
+           }
+       }
+
+     return  dp[ind-1][amt];
     }
 };
