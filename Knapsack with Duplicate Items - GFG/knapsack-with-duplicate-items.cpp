@@ -10,20 +10,24 @@ class Solution{
 public:
     int knapSack(int n, int w, int val[], int wt[])
     {
-        vector<vector<int>> dp(n+1,vector<int>(w+1,-1));
-      return fun(n-1,w,val,wt,dp);
+      return fun(n,w,val,wt);
     }
-    int fun(int ind, int w, int val[], int wt[], vector<vector<int>> &dp){
-        if(ind==0)
-            return (w/wt[0])*val[0];
-
-        if(dp[ind][w]!=-1)return dp[ind][w];
-        int not_pick=0+fun(ind-1,w,val,wt,dp);
-        int pick=INT_MIN;
-        if(wt[ind]<=w)
-        pick= val[ind]+fun(ind,w-wt[ind],val,wt,dp);
-        
-        return dp[ind][w]=max(not_pick,pick);
+    int fun(int ind, int w, int val[], int wt[]){
+      vector<vector<int>> dp(ind,vector<int>(w+1,0));
+      for(int i=wt[0];i<=w;i++){
+          dp[0][i]=((int)(i/wt[0]))*val[0];
+      }
+        for(int i=1;i<ind;i++){
+            for(int j=0;j<=w;j++){
+            int not_pick=0+dp[i-1][j];
+            int pick=INT_MIN;
+            if(wt[i]<=j){
+            pick= val[i]+dp[i][j-wt[i]];
+            }
+            dp[i][j]=max(not_pick,pick);
+            }
+        }
+        return dp[ind-1][w];
     }
 };
 
