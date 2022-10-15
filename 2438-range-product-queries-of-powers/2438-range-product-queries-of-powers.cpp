@@ -8,7 +8,7 @@ public:
         //if bit is set insert in the power array
         for(int i =0;i<32;i++)
         {
-            if(n&(1<<i))
+            if((n&(1<<i)) !=0)
                 pow.push_back(1<<i);
         }
         vector<int> ans;
