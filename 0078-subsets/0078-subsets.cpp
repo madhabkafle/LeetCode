@@ -8,11 +8,14 @@ public:
         return ans;
     }
     void helper(int i,vector<int> &v,vector<vector<int>> &ans,vector<int> &nums){
+        if(i==nums.size()){
             ans.push_back(v);
-        for(int j=i;j<nums.size();j++){
-            v.push_back(nums[j]);
-            helper(j+1,v,ans,nums);
-            v.pop_back();
+            return;
         }
+        v.push_back(nums[i]);
+        helper(i+1,v,ans,nums);
+        v.pop_back();
+        helper(i+1,v,ans,nums);
+        
     }
 };
