@@ -8,10 +8,10 @@ public:
         return ans;
     }
     int fun(int n,int m,string s1,string s2,vector<vector<int>> &dp){
-        for(int i=0;i<=n;i++){
+        for(int i=1;i<=n;i++){
             dp[i][0]=i;
         }
-        for(int j=0;j<=m;j++){
+        for(int j=1;j<=m;j++){
             dp[0][j]=j;
         }
         for(int i=1;i<=n;i++){
