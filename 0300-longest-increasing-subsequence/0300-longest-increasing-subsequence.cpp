@@ -29,6 +29,7 @@ public:
          vector<int> temp;
          int n=nums.size();
          temp.push_back(nums[0]);
+         int len=0;
          for(int i=1;i<n;i++){
            
              if(nums[i]>temp.back())
@@ -38,6 +39,6 @@ public:
                  temp[ind]=nums[i];
              }
          }
-         return temp.size();
+         return len=temp.size();
     }
 };
