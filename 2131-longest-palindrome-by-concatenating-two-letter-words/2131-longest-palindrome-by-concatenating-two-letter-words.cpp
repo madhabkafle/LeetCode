@@ -7,7 +7,7 @@ public:
             mp[it]++;
         }
         int count=0;
-             bool flag=false;
+        bool flag=false;
         for(auto s: words){
    
         string k= s;
@@ -22,7 +22,7 @@ public:
             count+=4;
             mp[s]-=2;
         }
-            else if(s==k && !flag && mp[k]>0){
+            else if(s==k && !flag && mp[k]==1){   //fixed in middle of string 
                 
                 count+=2;
                 mp[s]--;
