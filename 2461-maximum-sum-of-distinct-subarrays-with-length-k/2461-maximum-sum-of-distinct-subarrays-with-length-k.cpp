@@ -8,7 +8,7 @@ public:
             m[nums[j]]++;
             s += nums[j];
             if(k == j - i + 1) {
-                if(m.size() == k) ans = max(ans, s);
+                if(m.size() == k) {ans = max(ans, s);}
                 s -= nums[i];
                 m[nums[i]]--;
                 if(m[nums[i]]==0) m.erase(nums[i]);
