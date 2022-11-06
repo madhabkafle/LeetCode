@@ -11,7 +11,7 @@ public:
                 if(m.size() == k) ans = max(ans, s);
                 s -= nums[i];
                 m[nums[i]]--;
-                if(!m[nums[i]]) m.erase(nums[i]);
+                if(m[nums[i]]==0) m.erase(nums[i]);
                 i++;
             }
         }
