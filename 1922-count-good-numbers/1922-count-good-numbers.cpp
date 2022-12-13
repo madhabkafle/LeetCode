@@ -1,25 +1,23 @@
-#define MOD 1000000007
+#define mod 1000000007
+
 class Solution {
 public:
-    long long int power(int x,long long int r){
-        if(r==1)
-            return x;
-        if(!r)
-            return 1;
-        if(r&1){
-            long long int R=power(x,r/2);
-            return (R*R*x)%MOD;
+    long long power(long long x , long long y){
+        if(y == 0) return 1;
+        long long ans = power(x,y/2);
+        ans*=ans;
+        ans%=mod;
+        if(y%2){
+            ans*=x; 
+            ans%=mod;
         }
-        else
-        {
-            long long int R=power(x,r/2);
-            return (R*R)%MOD;
-        }
+        return ans;
     }
     
     int countGoodNumbers(long long n) {
-        if((n&1)==0)
-            return (power(5,n/2) * power(4,n/2))%MOD;
-        return (power(5,n/2+1) * power(4,n/2))%MOD;
+        long long odd = n/2;
+        long long even = n/2 + n%2;
+        return (power(5,even)*power(4,odd))%mod;
+        
     }
 };
