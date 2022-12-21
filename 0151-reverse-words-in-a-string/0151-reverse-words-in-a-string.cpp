@@ -1,29 +1,19 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        int n=s.size();
-        string str="";
-        string ans="";
-       stack<string> st;
-        for(int i=0;i<n;i++){
-        if(s[i]==' '){
-            if(str.size()>0){
-                st.push(str);
-                str="";
-            }
+        string result;
+        int i = 0, n = s.length();
+        while(i < n){
+            while(i < n && s[i] == ' ') i++;
+            if(i >= n) break;
+            int j = i;
+            while(j < n && s[j] != ' ') j++;
+            string sub = s.substr(i, j-i);
+            if(result.length() == 0) result = sub;
+            else result = sub + " " + result;
+            i = j+1;
         }
-            else{
-                str=str+s[i];
-            }
-        }
-            ans = ans + str;
-            while(!st.empty()){
-                ans = ans +" "+ st.top();
-                st.pop();
-            }
-            if(ans.size()!=0 && ans[0]==' '){
-                ans = ans.substr(1);
-            }
-            return ans;
+        
+        return result;
     }
 };
