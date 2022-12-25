@@ -8,7 +8,7 @@ class Solution {
       bool detect(int src,vector<int> adj[], int visi[]){
           visi[src]=1;
         queue<pair<pair<int,int>,int>> q;
-        q.push({{src,-1},0});
+        q.push({{src,-1},1});
         while(!q.empty()){
             int node=q.front().first.first;
             int parent= q.front().first.second;
