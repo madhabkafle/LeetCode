@@ -3,40 +3,32 @@
 using namespace std;
 
 // } Driver Code Ends
-class Solution {
+
+  class Solution {
   public:
-      bool detect(int src,vector<int> adj[], int visi[]){
-          visi[src]=1;
-        queue<pair<pair<int,int>,int>> q;
-        q.push({{src,-1},1});
-        while(!q.empty()){
-            int node=q.front().first.first;
-            int parent= q.front().first.second;
-            int vis=q.front().second;
-            q.pop();
-            for(auto it: adj[node]){
-             if(!visi[it]){
-             visi[it]=1;
-             q.push({{it,node},visi[it]});
+    bool detect(int src,int parent, int vis[],vector<int> adj[]){
+        vis[src]=1;
+        for(auto it: adj[src]){
+            if(!vis[it]){
+               if(detect(it,src,vis,adj)==true)
+               return true;
             }
             else if(parent != it){
                 return true;
             }
-           
-            }
         }
         return false;
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+      int vis[V]={0};
+      for(int i=0;i<V;i++){
+          if(!vis[i]){
+              if(detect(i,-1,vis,adj)==true)
+              return true;
+          }
       }
-      bool isCycle(int V, vector<int> adj[]) {
-       int visi[V]={0};
-       for(int i=0;i<V;i++){
-           if(!visi[i]){
-               if(detect(i,adj,visi)==true)
-               return true;
-           }
-       }
-       return false;
-    } 
+      return false;
+    }
 };
 
 //{ Driver Code Starts.
