@@ -21,7 +21,7 @@ public:
      for(int i=0;i<prerequisites.size();i++){
        int a=  prerequisites[i][0];
        int b=  prerequisites[i][1];
-       adj[b].push_back(a);
+       adj[a].push_back(b);
      }
       for(int i=0;i<n;i++){
         if(!vis[i])
