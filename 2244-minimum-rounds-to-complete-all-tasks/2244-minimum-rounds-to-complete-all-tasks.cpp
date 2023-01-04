@@ -14,7 +14,6 @@ public:
           return -1;
         if(num%3==0){
           count+=num/3;
-          num=num%3;
         }
         else{
           count+=num/3+1;
