@@ -6,7 +6,7 @@ public:
       long long x=0;
       long long sum=0;
       for(int i=n-1;i>=0;i--){
-        x= (x+shifts[i])%26;
+        x+=shifts[i];
         s[i]= (s[i]- 'a' + x)%26 +'a';
       }
       return s;
