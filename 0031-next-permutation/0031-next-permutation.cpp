@@ -20,7 +20,7 @@ public:
         }
       }
       swap(nums[i],nums[j]);
-      sort(nums.begin()+i+1,nums.end());
+      reverse(nums.begin()+i+1,nums.end());
     }
  }
 };
