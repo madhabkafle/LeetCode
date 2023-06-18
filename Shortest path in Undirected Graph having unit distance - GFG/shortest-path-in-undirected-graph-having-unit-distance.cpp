@@ -10,7 +10,7 @@ class Solution {
   public:
     vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
         vector<int> dis(N,1e9);
-        vector<int> adj[N];
+        vector<vector<int>> adj(N,vector<int>());
         for(auto i:edges){
             adj[i[0]].push_back(i[1]);
             adj[i[1]].push_back(i[0]);
